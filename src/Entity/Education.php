@@ -1,5 +1,5 @@
 <?php
-
+//образование
 namespace App\Entity;
 
 use App\Repository\EducationRepository;

@@ -1,3 +1,4 @@
+<!-- таблица резюме по статусам -->
 <template>
   <div >
     <div v-for="(resumes, status) in resumeByStatus" :key="status" class="narrow card-list d-flex flex-column p-3 pb-0 border rounded-3 mx-2">

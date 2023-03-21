@@ -1,5 +1,5 @@
 <?php
-
+// API
 namespace App\Controller;
 
 use App\Entity\Education;
@@ -37,7 +37,7 @@ class ApiController extends AbstractController
         $this->educationRepository = $entityManager->getRepository(Education::class);
     }
 
-
+// получить все резюме
     #[Route('/', name: 'get_all_resume')]
     public function index(): JsonResponse
     {
@@ -49,7 +49,7 @@ class ApiController extends AbstractController
             json: true
         );
     }
-
+// добавить резюме
     #[Route('/add', name: 'add_resume')]
     public function add(Request $request): JsonResponse
     {
@@ -72,7 +72,7 @@ class ApiController extends AbstractController
 
         return $this->save($resume);
     }
-
+// получить резюме по id
     #[Route('/{id}', name: 'get_resume_by_id')]
     public function get($id): JsonResponse
     {
@@ -84,7 +84,7 @@ class ApiController extends AbstractController
             json: true
         );
     }
-
+// редактировать резюме
     #[Route('/{id}/edit', name: 'edit_resume')]
     public function edit($id, Request $request): JsonResponse
     {
@@ -99,6 +99,9 @@ class ApiController extends AbstractController
             $request->getContent(),
             Resume::class,
             'json',
+            [
+                AbstractNormalizer::IGNORED_ATTRIBUTES => ['id', ['educations' => 'id']],
+            ]
         );
 
         $errors = $this->validator->validate($newResume);
@@ -120,6 +123,7 @@ class ApiController extends AbstractController
         $resume->setSalary($newResume->getSalary());
         $resume->setSkills($newResume->getSkills());
         $educations=$newResume->geteducations();
+        $old_educations=$resume->geteducations();
         foreach ($educations as $education){
             $resume->addEducation($education);
         }
@@ -127,13 +131,15 @@ class ApiController extends AbstractController
         $this->entityManager->persist($resume);
         $this->entityManager->flush();
             // $this->resumeRepository->update($resume, $newResume, true);
+
+        // dd($newResume);
             // $this->resumeRepository->save($resume);
             return new JsonResponse('{"status": "ok"}', json: true);
         } catch (Exception $e) {
             return new JsonResponse(['error' => $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR]);
         }
     }
-
+// обновить статус
     #[Route('/{id}/status/update', name: 'update_status_resume')]
     public function updateStatus($id, Request $request, DecoderInterface $decoder): JsonResponse
     {
@@ -155,7 +161,7 @@ class ApiController extends AbstractController
 
         return $this->save($resume);
     }
-
+// сохранить резюме
     private function save(Resume $resume): JsonResponse
     {
         try {

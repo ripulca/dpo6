@@ -1,3 +1,4 @@
+<!-- селект с обработчиком ошибок -->
 <template>
     <div class="px-1 pt-2">
         <label class="form-label">{{ label }}</label>

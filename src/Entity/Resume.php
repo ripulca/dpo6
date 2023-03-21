@@ -1,5 +1,5 @@
 <?php
-
+// резюме
 namespace App\Entity;
 
 use App\Repository\ResumeRepository;

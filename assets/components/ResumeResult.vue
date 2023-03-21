@@ -1,3 +1,4 @@
+<!-- общая форма ввода резюме -->
 <template>
     <router-link class="nav" :to="{ name: 'home' }">Главная</router-link>
     <div class="container">

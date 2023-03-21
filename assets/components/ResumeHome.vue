@@ -1,3 +1,4 @@
+<!-- меню -->
 <template>
     <div>
         <router-link class="nav" :to="{ name: 'home' }">Главная</router-link>

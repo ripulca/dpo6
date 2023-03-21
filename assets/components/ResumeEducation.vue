@@ -1,3 +1,4 @@
+<!-- ввод образования -->
 <template>
   <div class="px-1 pt-2">
     <div>
@@ -6,7 +7,7 @@
         <ResumeInstituteInput name="institution" :vk-data="vkData" @updated="educationChanged" :modelValue="modelValue.institution"/>
         <ResumeInput type="text" label="Факультет" name="faculty" @updated="educationChanged" :modelValue="modelValue.faculty"/>
         <ResumeInput type="text" label="Специализация" name="specialization" @updated="educationChanged" :modelValue="modelValue.specialization"/>
-        <ResumeInput type="number" label="Год окончания" name="gard_year" @updated="educationChanged" :modelValue="modelValue.graduationYear" error_message="нереалистичный год" />
+        <ResumeInput type="number" label="Год окончания" name="gard_year" @updated="educationChanged" :modelValue="modelValue.gard_year" error_message="нереалистичный год" />
       </div>
     </div>
   </div>

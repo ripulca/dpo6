@@ -1,3 +1,4 @@
+<!-- формирование списка образований -->
 <template>
   <div class="px-1 pt-2">
     <label class="form-label">Образования</label>
